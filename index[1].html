@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verificación de personal · El Gran Sabor de Chalco</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Oswald:wght@500;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<style>:root{--l:#5B1D18;--d:#C9A14A;--h:#F6ECDA;--t:#2A1411;--s:#7A6258;--p:#FFFBF3}
+@media (prefers-color-scheme:dark){:root{--h:#1E0F0D;--p:#2A1613;--t:#FFF5E4;--s:#C7AE9A}}
+body{margin:0;background:var(--h);color:var(--t);font-family:Montserrat,Arial,sans-serif}
+header{background:var(--l);color:#E4C77E;text-align:center;padding:28px 16px}
+.m{font-family:"Dancing Script",cursive;font-size:2.3rem;margin:0}.sub{margin:.3rem 0 0;color:#EBD9B8;font-size:.85rem}
+main{max-width:440px;margin:0 auto;padding:24px 16px 40px}
+h1{font-family:Oswald,sans-serif;font-weight:500;font-size:1.4rem;margin:0 0 .4rem}p{font-size:.92rem;color:var(--s);margin:0 0 1rem}
+form{display:flex;gap:8px}input{flex:1;font:inherit;font-size:16px;padding:12px;border-radius:10px;border:1px solid rgba(91,29,24,.3);background:var(--p);color:var(--t);text-transform:uppercase}
+button,a.b{background:var(--l);color:#FFF4DE;border:0;border-radius:10px;padding:12px 16px;font:600 .95rem Montserrat,sans-serif;text-decoration:none;cursor:pointer}
+a.b{display:block;text-align:center;margin-top:22px}#e{color:#B3261E;font-size:.85rem;min-height:1.2em;margin-top:8px}</style></head><body>
+<header><p class="m">El Gran Sabor de Chalco</p><p class="sub">Verificación oficial de personal</p></header>
+<main><h1>Verifica a nuestro personal</h1><p>Escanea el QR de su credencial o escribe el ID de empleado que aparece en ella.</p>
+<form id="f"><input id="i" placeholder="EGSC-VEN-0009" autocomplete="off" aria-label="ID de empleado"><button>Verificar</button></form><div id="e" role="alert"></div>
+<a class="b" href="no-autorizados.html">Ver personal NO autorizado</a></main>
+<script>var IDS=["EGSC-ADM-0001", "EGSC-SUP-0002", "EGSC-ADM-0003", "EGSC-PRO-0004", "EGSC-PRO-0005", "EGSC-PRO-0006", "EGSC-VEN-0007", "EGSC-AYV-0008", "EGSC-VEN-0009", "EGSC-AYV-0010", "EGSC-AYV-0011", "EGSC-VEN-0015", "EGSC-BAJ-0012", "EGSC-BAJ-0013", "EGSC-BAJ-0014"];document.getElementById('f').onsubmit=function(ev){ev.preventDefault();var v=document.getElementById('i').value.trim().toUpperCase().replace(/\s+/g,'');
+if(IDS.indexOf(v)>-1){location.href=v+'.html';}else{document.getElementById('e').textContent='Ese ID no está registrado. No entregues dinero ni mercancía y llámanos al 55 5213 1916.';}};</script></body></html>
