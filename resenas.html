@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reseñas · El Gran Sabor de Chalco</title>
+<meta name="theme-color" content="#5B1D18">
+<meta name="robots" content="noindex">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icono-192.png">
+<link rel="icon" href="icono-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Reseñas GSC">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Oswald:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--l:#5B1D18;--l2:#7A2A22;--d:#C9A14A;--dc:#E4C77E;--h:#F6ECDA;--p:#FFFBF3;--t:#2A1411;--x:#3B2420;--s:#7A6258;--b:rgba(91,29,24,.16);
+--ok:#2F6B3A;--okb:#E6F2E7;--mal:#B3261E;--malb:#FBE7E5;--reg:#9A6A00;--regb:#FFF3D6;--star:#E0A526}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--h:#1E0F0D;--p:#2A1613;--t:#FFF5E4;--x:#F1E4CF;--s:#C7AE9A;--b:rgba(228,199,126,.2);
+--ok:#7FCB8A;--okb:#1F3323;--mal:#FF8A80;--malb:#3A1714;--reg:#F2C25C;--regb:#3A2E12}}
+:root[data-theme="dark"]{--h:#1E0F0D;--p:#2A1613;--t:#FFF5E4;--x:#F1E4CF;--s:#C7AE9A;--b:rgba(228,199,126,.2);--ok:#7FCB8A;--okb:#1F3323;--mal:#FF8A80;--malb:#3A1714;--reg:#F2C25C;--regb:#3A2E12}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--h);color:var(--x);font-family:Montserrat,"Segoe UI",Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+button{font:inherit;cursor:pointer}
+header{background:var(--l);color:var(--dc);padding:calc(14px + env(safe-area-inset-top)) 16px 14px;position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px}
+header img{width:40px;height:40px;border-radius:10px;background:var(--h)}
+header .tt{flex:1;min-width:0}
+header .m{font-family:"Dancing Script",cursive;font-size:1.45rem;line-height:1;margin:0}
+header .sub{font-size:.75rem;color:#EBD9B8;margin:2px 0 0}
+.ib{background:rgba(255,255,255,.12);border:0;color:#FFF4DE;border-radius:10px;width:40px;height:40px;display:grid;place-items:center}
+.ib:focus-visible{outline:2px solid var(--dc);outline-offset:2px}
+.ib.spin svg{animation:sp 1s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+main{max-width:720px;margin:0 auto;padding:16px 16px calc(40px + env(safe-area-inset-bottom))}
+h2{font-family:Oswald,sans-serif;font-weight:500;font-size:1.1rem;color:var(--t);margin:22px 0 10px}
+.muted{color:var(--s);font-size:.82rem}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:560px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--p);border:1px solid var(--b);border-radius:14px;padding:12px 14px}
+.kpi .v{font-family:Oswald,sans-serif;font-size:1.7rem;color:var(--t);line-height:1.1}
+.kpi .k{font-size:.76rem;color:var(--s)}
+.kpi.good .v{color:var(--ok)} .kpi.bad .v{color:var(--mal)}
+.seg{display:flex;background:var(--p);border:1px solid var(--b);border-radius:12px;padding:3px;gap:3px;overflow-x:auto}
+.seg button{flex:1;border:0;background:none;padding:8px 10px;border-radius:9px;color:var(--s);font-size:.85rem;font-weight:600;white-space:nowrap}
+.seg button.on{background:var(--l);color:#FFF4DE}
+.workers{display:grid;gap:10px}
+.w{display:flex;align-items:center;gap:12px;background:var(--p);border:1px solid var(--b);border-radius:14px;padding:10px 12px;width:100%;text-align:left;color:inherit}
+.w:focus-visible{outline:2px solid var(--d);outline-offset:2px}
+.av{width:52px;height:52px;border-radius:12px;flex:0 0 52px;background:var(--l);color:var(--dc);display:grid;place-items:center;font-family:Oswald,sans-serif;font-size:1.1rem;overflow:hidden;border:2px solid var(--d)}
+.av img{width:100%;height:100%;object-fit:cover}
+.w .info{flex:1;min-width:0}
+.w .n{font-weight:600;color:var(--t);font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.w .r{font-size:.76rem;color:var(--s)}
+.bar{height:6px;border-radius:4px;background:var(--b);margin-top:6px;overflow:hidden;display:flex}
+.bar i{display:block;height:100%}
+.score{text-align:right;flex:0 0 auto}
+.score .avg{font-family:Oswald,sans-serif;font-size:1.35rem;color:var(--t);line-height:1}
+.score .cnt{font-size:.72rem;color:var(--s)}
+.st{color:var(--star);letter-spacing:1px}
+.st .off{color:var(--b)}
+.pill{display:inline-block;font-size:.7rem;font-weight:600;padding:2px 8px;border-radius:999px}
+.pill.g{background:var(--okb);color:var(--ok)} .pill.m{background:var(--malb);color:var(--mal)} .pill.r{background:var(--regb);color:var(--reg)}
+.rev{background:var(--p);border:1px solid var(--b);border-left:4px solid var(--d);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.rev.g{border-left-color:var(--ok)} .rev.m{border-left-color:var(--mal)} .rev.r{border-left-color:var(--reg)}
+.rev .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.rev .c{font-weight:600;color:var(--t)}
+.rev p{margin:.35rem 0 0;font-size:.9rem;overflow-wrap:anywhere}
+.rev .meta{font-size:.74rem;color:var(--s);margin-top:.35rem}
+.empty{background:var(--p);border:1px dashed var(--b);border-radius:14px;padding:22px 16px;text-align:center;color:var(--s);font-size:.9rem}
+.detail-head{display:flex;gap:14px;align-items:center;background:var(--p);border:1px solid var(--b);border-radius:16px;padding:14px}
+.detail-head .av{width:72px;height:88px;flex-basis:72px}
+.back{background:none;border:0;color:var(--l2);font-weight:600;padding:6px 0;display:inline-flex;gap:6px;align-items:center}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .back{color:var(--dc)}}
+.dist{display:grid;gap:6px;margin-top:12px}
+.dist div{display:grid;grid-template-columns:28px 1fr 28px;align-items:center;gap:8px;font-size:.8rem;color:var(--s)}
+.dist .tr{height:8px;background:var(--b);border-radius:4px;overflow:hidden}
+.dist .tr i{display:block;height:100%;background:var(--star)}
+/* PIN */
+#lock{position:fixed;inset:0;background:var(--l);z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;color:#FFF4DE}
+#lock img{width:110px;height:110px;border-radius:24px;margin-bottom:14px}
+#lock h1{font-family:Oswald,sans-serif;font-weight:500;font-size:1.4rem;margin:0 0 4px}
+#lock p{margin:0 0 18px;color:#EBD9B8;font-size:.88rem}
+.dots{display:flex;gap:12px;margin-bottom:22px}
+.dots span{width:14px;height:14px;border-radius:50%;border:2px solid var(--dc)}
+.dots span.f{background:var(--dc)}
+.pad{display:grid;grid-template-columns:repeat(3,72px);gap:12px}
+.pad button{height:72px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#FFF4DE;font-family:Oswald,sans-serif;font-size:1.6rem}
+.pad button:active{background:rgba(255,255,255,.25)}
+.shake{animation:sh .35s}@keyframes sh{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.err{color:#FFB4A9;min-height:1.3em;font-size:.85rem;margin-top:12px}
+.hint{margin-top:18px;font-size:.78rem;color:#EBD9B8;text-align:center;max-width:300px}
+@media (prefers-reduced-motion:reduce){.ib.spin svg,.shake{animation:none}}
+</style>
+</head>
+<body>
+<div id="lock" role="dialog" aria-label="Acceso con PIN">
+  <img src="icono-192.png" alt="">
+  <h1>Reseñas de clientes</h1>
+  <p>Escribe tu PIN para entrar</p>
+  <div class="dots" id="dots"><span></span><span></span><span></span><span></span></div>
+  <div class="pad" id="pad"></div>
+  <div class="err" id="perr" role="alert"></div>
+  <div class="hint" id="hint"></div>
+</div>
+
+<header>
+  <img src="icono-192.png" alt="">
+  <div class="tt"><p class="m">El Gran Sabor de Chalco</p><p class="sub" id="upd">Reseñas de clientes</p></div>
+  <button class="ib" id="ref" aria-label="Actualizar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg></button>
+</header>
+
+<main id="app"></main>
+
+<script>
+var SHEET='1r7iy2DkheXjAtL1XFf2hqoiI5deYWClyBL1szmBGzms', GID='182590657';
+var PIN='1916';
+var STAFF=[
+ {id:'EGSC-VEN-0009',n:'Alan',p:'Vendedor'},
+ {id:'EGSC-VEN-0015',n:'Cristian Ordóñez Azcona',p:'Vendedor'},
+ {id:'EGSC-AYV-0010',n:'Víctor',p:'Ayudante de ventas'},
+ {id:'EGSC-AYV-0011',n:'José Luis',p:'Ayudante de ventas'},
+ {id:'EGSC-PRO-0004',n:'Rodolfo Constantino Valverde',p:'Jefe de Producción'},
+ {id:'EGSC-PRO-0005',n:'Marisela García Zavala',p:'Producción'},
+ {id:'EGSC-PRO-0006',n:'Laura González',p:'Producción'},
+ {id:'EGSC-ADM-0001',n:'Alexis Eduardo Maya García',p:'Administrativo'},
+ {id:'EGSC-SUP-0002',n:'Eduardo Maya González',p:'Jefe General'},
+ {id:'EGSC-ADM-0003',n:'Dayana Mitzue Maya García',p:'Administrativo y Marketing'}
+];
+var ST={reviews:[],view:'home',sel:null,filter:'todas',loaded:false,error:''};
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function cls(c){return c>=4?'g':(c<=2?'m':'r');}
+function lbl(c){return c>=4?'Buena':(c<=2?'Mala':'Regular');}
+function stars(c){var s='';for(var i=1;i<=5;i++)s+=i<=Math.round(c)?'★':'<span class="off">★</span>';return '<span class="st" aria-label="'+(Math.round(c*10)/10)+' de 5">'+s+'</span>';}
+function ini(n){var w=n.split(' ');return (w[0][0]+(w.length>2?w[w.length-2][0]:(w[1]?w[1][0]:''))).toUpperCase();}
+function fdate(d){return d?d.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'})+' · '+d.toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'}):'';}
+
+/* ---------- PIN ---------- */
+(function(){
+  var lock=document.getElementById('lock'),pad=document.getElementById('pad'),dots=document.getElementById('dots').children,err=document.getElementById('perr'),v='';
+  if(ls('gsc_ok')==='1'){lock.remove();boot();return;}
+  document.getElementById('hint').textContent='Para tenerla en tu celular: abre el menú del navegador y elige "Agregar a pantalla de inicio".';
+  ['1','2','3','4','5','6','7','8','9','','0','⌫'].forEach(function(k){var b=document.createElement('button');b.textContent=k;b.type='button';if(!k){b.style.visibility='hidden';}
+    b.setAttribute('aria-label',k==='⌫'?'Borrar':k);b.onclick=function(){press(k);};pad.appendChild(b);});
+  function paint(){for(var i=0;i<4;i++)dots[i].classList.toggle('f',i<v.length);}
+  function press(k){err.textContent='';if(k==='⌫'){v=v.slice(0,-1);paint();return;}if(v.length>=4)return;v+=k;paint();
+    if(v.length===4){if(v===PIN){ls('gsc_ok','1');lock.remove();boot();}else{document.getElementById('dots').classList.add('shake');err.textContent='PIN incorrecto';setTimeout(function(){document.getElementById('dots').classList.remove('shake');v='';paint();},400);}}}
+  document.addEventListener('keydown',function(e){if(!document.body.contains(lock))return;if(/^[0-9]$/.test(e.key))press(e.key);else if(e.key==='Backspace')press('⌫');});
+})();
+
+/* ---------- datos ---------- */
+function load(){
+  var btn=document.getElementById('ref');btn.classList.add('spin');
+  var cb='gscCb'+Date.now(),s=document.createElement('script'),done=false;
+  window[cb]=function(r){done=true;delete window[cb];s.remove();btn.classList.remove('spin');
+    try{
+      if(r.status!=='ok')throw new Error('estado');
+      var rows=(r.table.rows||[]).map(function(x){var c=x.c||[];function g(i){return c[i]&&c[i].v!=null?c[i].v:'';}
+        var d=g(0),dt=null;var m=/Date\((\d+),(\d+),(\d+),?(\d+)?,?(\d+)?,?(\d+)?\)/.exec(d);if(m)dt=new Date(+m[1],+m[2],+m[3],+(m[4]||0),+(m[5]||0),+(m[6]||0));
+        return {fecha:dt,id:String(g(1)).trim().toUpperCase(),trab:String(g(2)),cli:String(g(3)),cal:Math.max(0,Math.min(5,Math.round(+g(4)||0))),com:String(g(5))};
+      }).filter(function(x){return x.id&&x.id!=='PRUEBA'&&x.cal>0;});
+      rows.sort(function(a,b){return (b.fecha||0)-(a.fecha||0);});
+      ST.reviews=rows;ST.loaded=true;ST.error='';
+      document.getElementById('upd').textContent='Actualizado '+new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+    }catch(e){ST.error='No se pudieron leer las reseñas.';}
+    render();
+  };
+  s.src='https://docs.google.com/spreadsheets/d/'+SHEET+'/gviz/tq?gid='+GID+'&headers=1&tqx=responseHandler:'+cb+'&_='+Date.now();
+  s.onerror=function(){btn.classList.remove('spin');ST.error='Sin conexión. Revisa tu internet y toca actualizar.';render();};
+  document.body.appendChild(s);
+  setTimeout(function(){if(!done){btn.classList.remove('spin');if(!ST.loaded){ST.error='La conexión tardó demasiado. Toca actualizar.';render();}}},15000);
+}
+function photos(){
+  STAFF.forEach(function(p){var k='gsc_ph_'+p.id,c=ls(k);if(c){p.img=c;return;}
+    fetch(p.id+'.html').then(function(r){return r.text();}).then(function(t){var m=/<div class="foto"><img src="(data:image\/[^"]+)"/.exec(t);if(m){p.img=m[1];ls(k,m[1]);render();}}).catch(function(){});});
+}
+function statsFor(list){var n=list.length,s=0,g=0,m=0,r=0,d=[0,0,0,0,0,0];list.forEach(function(x){s+=x.cal;d[x.cal]++;if(x.cal>=4)g++;else if(x.cal<=2)m++;else r++;});return{n:n,avg:n?s/n:0,g:g,m:m,r:r,d:d};}
+function filt(list){return list.filter(function(x){return ST.filter==='todas'||(ST.filter==='buenas'&&x.cal>=4)||(ST.filter==='malas'&&x.cal<=2)||(ST.filter==='regulares'&&x.cal===3);});}
+function av(p,big){return '<div class="av">'+(p.img?'<img src="'+p.img+'" alt="">':esc(ini(p.n)))+'</div>';}
+function segHtml(){return '<div class="seg" role="tablist">'+[['todas','Todas'],['buenas','Buenas ★4–5'],['regulares','Regulares ★3'],['malas','Malas ★1–2']].map(function(o){return '<button role="tab" aria-selected="'+(ST.filter===o[0])+'" class="'+(ST.filter===o[0]?'on':'')+'" data-f="'+o[0]+'">'+o[1]+'</button>';}).join('')+'</div>';}
+function revHtml(x,showW){var c=cls(x.cal);return '<article class="rev '+c+'"><div class="top"><span class="c">'+esc(x.cli||'Cliente')+'</span><span>'+stars(x.cal)+' <span class="pill '+c+'">'+lbl(x.cal)+'</span></span></div>'+
+  (x.com?'<p>'+esc(x.com)+'</p>':'')+'<div class="meta">'+(showW?esc(nameOf(x))+' · ':'')+fdate(x.fecha)+'</div></article>';}
+function nameOf(x){var p=STAFF.find(function(s){return s.id===x.id;});return p?p.n:(x.trab||x.id);}
+
+function render(){
+  var app=document.getElementById('app'),R=ST.reviews,h='';
+  if(ST.error&&!ST.loaded){app.innerHTML='<div class="empty" style="margin-top:20px">'+esc(ST.error)+'</div>';return;}
+  if(!ST.loaded){app.innerHTML='<div class="empty" style="margin-top:20px">Cargando reseñas…</div>';return;}
+  if(ST.view==='det'){
+    var p=STAFF.find(function(s){return s.id===ST.sel;})||{id:ST.sel,n:ST.sel,p:''};
+    var mine=R.filter(function(x){return x.id===p.id;}),st=statsFor(mine),list=filt(mine);
+    h+='<button class="back" id="back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>Todos los trabajadores</button>';
+    h+='<div class="detail-head">'+av(p)+'<div style="flex:1;min-width:0"><div style="font-family:Oswald,sans-serif;font-size:1.25rem;color:var(--t);line-height:1.15">'+esc(p.n)+'</div><div class="muted">'+esc(p.p)+' · '+esc(p.id)+'</div>'+
+       '<div style="margin-top:6px">'+(st.n?stars(st.avg)+' <b style="color:var(--t)">'+st.avg.toFixed(1)+'</b> <span class="muted">('+st.n+' reseña'+(st.n===1?'':'s')+')</span>':'<span class="muted">Sin reseñas todavía</span>')+'</div></div></div>';
+    if(st.n){
+      h+='<div class="kpis" style="margin-top:10px"><div class="kpi good"><div class="v">'+st.g+'</div><div class="k">Buenas</div></div><div class="kpi"><div class="v">'+st.r+'</div><div class="k">Regulares</div></div><div class="kpi bad"><div class="v">'+st.m+'</div><div class="k">Malas</div></div><div class="kpi"><div class="v">'+Math.round(st.g/st.n*100)+'%</div><div class="k">Satisfacción</div></div></div>';
+      h+='<div class="dist" aria-label="Distribución de estrellas">'+[5,4,3,2,1].map(function(k){return '<div><span>'+k+'★</span><span class="tr"><i style="width:'+(st.n?st.d[k]/st.n*100:0)+'%"></i></span><span>'+st.d[k]+'</span></div>';}).join('')+'</div>';
+    }
+    h+='<h2>Reseñas</h2>'+segHtml()+'<div style="margin-top:12px">'+(list.length?list.map(function(x){return revHtml(x,false);}).join(''):'<div class="empty">'+(mine.length?'No hay reseñas en este filtro.':'Cuando un cliente escanee el QR de su credencial y deje su reseña, aparecerá aquí.')+'</div>')+'</div>';
+  } else {
+    var all=statsFor(R),now=Date.now(),wk=R.filter(function(x){return x.fecha&&now-x.fecha<7*864e5;}).length;
+    h+='<div class="kpis"><div class="kpi"><div class="v">'+all.n+'</div><div class="k">Reseñas totales</div></div><div class="kpi"><div class="v">'+(all.n?all.avg.toFixed(1):'—')+' <span style="font-size:1rem;color:var(--star)">★</span></div><div class="k">Promedio general</div></div><div class="kpi good"><div class="v">'+all.g+'</div><div class="k">Buenas (4–5★)</div></div><div class="kpi bad"><div class="v">'+all.m+'</div><div class="k">Malas (1–2★)</div></div></div>';
+    h+='<p class="muted" style="margin:8px 2px 0">'+wk+' reseña'+(wk===1?'':'s')+' en los últimos 7 días</p>';
+    var rows=STAFF.map(function(p){var mine=R.filter(function(x){return x.id===p.id;});return {p:p,s:statsFor(mine)};});
+    rows.sort(function(a,b){return (b.s.n?1:0)-(a.s.n?1:0)||b.s.avg-a.s.avg||b.s.n-a.s.n;});
+    h+='<h2>Por trabajador</h2><div class="workers">'+rows.map(function(o){var s=o.s,p=o.p;
+      return '<button class="w" data-id="'+p.id+'">'+av(p)+'<div class="info"><div class="n">'+esc(p.n)+'</div><div class="r">'+esc(p.p)+(s.n?' · <span style="color:var(--ok)">'+s.g+' buenas</span> · <span style="color:var(--mal)">'+s.m+' malas</span>':'')+'</div>'+
+        (s.n?'<div class="bar"><i style="width:'+s.g/s.n*100+'%;background:var(--ok)"></i><i style="width:'+s.r/s.n*100+'%;background:var(--reg)"></i><i style="width:'+s.m/s.n*100+'%;background:var(--mal)"></i></div>':'')+
+        '</div><div class="score">'+(s.n?'<div class="avg">'+s.avg.toFixed(1)+'<span style="font-size:.9rem;color:var(--star)"> ★</span></div><div class="cnt">'+s.n+' reseña'+(s.n===1?'':'s')+'</div>':'<div class="cnt">Sin reseñas</div>')+'</div></button>';}).join('')+'</div>';
+    var list=filt(R);
+    h+='<h2>Últimas reseñas</h2>'+segHtml()+'<div style="margin-top:12px">'+(list.length?list.slice(0,50).map(function(x){return revHtml(x,true);}).join(''):'<div class="empty">'+(R.length?'No hay reseñas en este filtro.':'Todavía no hay reseñas. Aparecerán aquí en cuanto un cliente escanee el QR de una credencial y califique.')+'</div>')+'</div>';
+  }
+  app.innerHTML=h;
+  var b=document.getElementById('back');if(b)b.onclick=function(){ST.view='home';ST.filter='todas';render();scrollTo(0,0);};
+  [].forEach.call(app.querySelectorAll('.w'),function(el){el.onclick=function(){ST.view='det';ST.sel=el.dataset.id;ST.filter='todas';render();scrollTo(0,0);};});
+  [].forEach.call(app.querySelectorAll('.seg button'),function(el){el.onclick=function(){ST.filter=el.dataset.f;render();};});
+}
+function boot(){render();photos();load();document.getElementById('ref').onclick=load;setInterval(load,120000);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)load();});}
+</script>
+</body>
+</html>

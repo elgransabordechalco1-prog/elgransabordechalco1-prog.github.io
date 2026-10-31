@@ -97,6 +97,13 @@ footer .marca{font-size:1.4rem;color:var(--ladrillo-2)}
 .c-form input:focus,.c-form textarea:focus{outline:2px solid var(--dorado);outline-offset:1px}
 .c-nota{font-size:.76rem;color:var(--suave);margin:.6rem 0 0}
 .c-err{font-size:.8rem;color:#B3261E;margin:-4px 0 10px;min-height:1em}
+
+.stars{display:flex;gap:6px;margin:0 0 14px}
+.stars button{flex:1;font-size:1.9rem;line-height:1;padding:8px 0;border:1px solid var(--borde);border-radius:10px;background:var(--hueso);color:#C9C0B4;cursor:pointer}
+.stars button.on{color:#E0A526;background:#FFF6DE;border-color:#E0A526}
+.stars button:focus-visible{outline:2px solid var(--dorado);outline-offset:2px}
+.c-gracias{display:none;text-align:center;padding:10px 4px}
+.c-gracias b{display:block;font-family:Oswald,sans-serif;font-size:1.3rem;color:var(--ok);margin-bottom:.3rem}
 </style>
 </head>
 <body>
@@ -159,17 +166,21 @@ footer .marca{font-size:1.4rem;color:var(--ladrillo-2)}
 
 
   <section class="coment" aria-labelledby="c-tit">
-    <h2 id="c-tit">Comentarios de clientes</h2>
-    <div id="c-lista" class="c-lista"></div>
-    <div class="c-form">
-      <label for="c-nombre">Tu nombre</label>
+    <h2 id="c-tit">Califica a Rodolfo</h2>
+    <div class="c-form" id="c-form">
+      <label>¿Cómo te atendió?</label>
+      <div class="stars" id="c-stars" role="radiogroup" aria-label="Calificación">
+        <button type="button" data-v="1" aria-label="1 estrella">★</button><button type="button" data-v="2" aria-label="2 estrellas">★</button><button type="button" data-v="3" aria-label="3 estrellas">★</button><button type="button" data-v="4" aria-label="4 estrellas">★</button><button type="button" data-v="5" aria-label="5 estrellas">★</button>
+      </div>
+      <label for="c-nombre">Tu nombre o negocio</label>
       <input id="c-nombre" autocomplete="name" maxlength="60" placeholder="Ej. Abarrotes Doña Lupe">
-      <label for="c-texto">¿Cómo te atendió Rodolfo?</label>
-      <textarea id="c-texto" maxlength="500" placeholder="Escribe tu comentario"></textarea>
+      <label for="c-texto">Comentario</label>
+      <textarea id="c-texto" maxlength="500" placeholder="Cuéntanos cómo te atendió"></textarea>
       <p id="c-err" class="c-err" role="alert"></p>
-      <button type="button" id="c-enviar" class="btn" style="width:100%;border:0;cursor:pointer;font-family:inherit">Enviar comentario por WhatsApp</button>
-      <p class="c-nota">Tu comentario llega directo a El Gran Sabor de Chalco. Lo revisamos antes de publicarlo aquí.</p>
+      <button type="button" id="c-enviar" class="btn" style="width:100%;border:0;cursor:pointer;font-family:inherit">Enviar reseña</button>
+      <p class="c-nota">Tu reseña llega directo a El Gran Sabor de Chalco y se abre WhatsApp para confirmarla.</p>
     </div>
+    <div class="c-gracias" id="c-gracias" role="status"><b>¡Gracias por tu reseña!</b>Nos ayuda a darte un mejor servicio.</div>
   </section>
 
   <section class="aviso">
@@ -198,24 +209,19 @@ footer .marca{font-size:1.4rem;color:var(--ladrillo-2)}
 
 <script>
 (function(){
-  // Comentarios aprobados: {nombre, texto, fecha}
-  var COMENTARIOS=[];
-  var lista=document.getElementById('c-lista');
-  if(!COMENTARIOS.length){
-    var v=document.createElement('p'); v.className='c-vacio'; v.textContent='Aún no hay comentarios. ¡Sé el primero!'; lista.replaceWith(v);
-  } else COMENTARIOS.forEach(function(c){
-    var d=document.createElement('div'); d.className='c-item';
-    var p=document.createElement('p'); p.textContent='“'+c.texto+'”';
-    var q=document.createElement('p'); q.className='c-quien';
-    var b=document.createElement('b'); b.textContent=c.nombre; q.appendChild(b);
-    if(c.fecha) q.appendChild(document.createTextNode(' · '+c.fecha));
-    d.appendChild(p); d.appendChild(q); lista.appendChild(d);
-  });
+  var FORM='https://docs.google.com/forms/d/e/1FAIpQLSficbNVz_4-oXLCphrcQniOLL2ZbjvUZ-iaLpMYtjtUQtA1WQ/formResponse', ID='EGSC-PRO-0004', NOM='Rodolfo Constantino Valverde';
+  var cal=0, bs=[].slice.call(document.querySelectorAll('#c-stars button'));
+  bs.forEach(function(b){ b.addEventListener('click',function(){ cal=+b.dataset.v; bs.forEach(function(x){ x.classList.toggle('on', +x.dataset.v<=cal); x.setAttribute('aria-pressed', +x.dataset.v<=cal); }); }); });
   document.getElementById('c-enviar').addEventListener('click',function(){
     var n=document.getElementById('c-nombre').value.trim(), t=document.getElementById('c-texto').value.trim(), e=document.getElementById('c-err');
-    if(!n||!t){ e.textContent='Escribe tu nombre y tu comentario.'; return; }
+    if(!cal){ e.textContent='Elige de 1 a 5 estrellas.'; return; }
+    if(!n){ e.textContent='Escribe tu nombre o el de tu negocio.'; return; }
     e.textContent='';
-    var msg='Comentario sobre Rodolfo Constantino Valverde (EGSC-PRO-0004)\nCliente: '+n+'\nComentario: '+t;
+    var p=new URLSearchParams(); p.append('entry.1853546821',ID); p.append('entry.1456274162',NOM); p.append('entry.733208915',n); p.append('entry.2082605015',String(cal)); p.append('entry.249047219',t);
+    var ok=false; try{ ok=navigator.sendBeacon(FORM,p); }catch(_){}
+    if(!ok){ try{ fetch(FORM,{method:'POST',mode:'no-cors',body:p,keepalive:true}); }catch(_){} }
+    var msg='Reseña sobre '+NOM+' ('+ID+')\nCalificación: '+'★★★★★'.slice(0,cal)+'☆☆☆☆☆'.slice(0,5-cal)+' ('+cal+'/5)\nCliente: '+n+(t?'\nComentario: '+t:'');
+    document.getElementById('c-form').style.display='none'; document.getElementById('c-gracias').style.display='block';
     window.open('https://wa.me/525552131916?text='+encodeURIComponent(msg),'_blank','noopener');
   });
 })();
