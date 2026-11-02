@@ -104,6 +104,7 @@ footer .marca{font-size:1.4rem;color:var(--ladrillo-2)}
 .stars button:focus-visible{outline:2px solid var(--dorado);outline-offset:2px}
 .c-gracias{display:none;text-align:center;padding:10px 4px}
 .c-gracias b{display:block;font-family:Oswald,sans-serif;font-size:1.3rem;color:var(--ok);margin-bottom:.3rem}
+.c-resumen{margin:-.2rem 0 .6rem;font-size:.88rem;color:var(--suave)}.c-resumen b{color:var(--tinta)}.c-est{color:#E0A526;letter-spacing:1px}
 </style>
 </head>
 <body>
@@ -164,6 +165,12 @@ footer .marca{font-size:1.4rem;color:var(--ladrillo-2)}
   </section>
 
 
+  <section class="coment" aria-labelledby="r-tit">
+    <h2 id="r-tit">Comentarios de clientes</h2>
+    <p class="c-resumen" id="r-res"></p>
+    <div id="r-lista" class="c-lista"><p class="c-vacio">Cargando comentarios…</p></div>
+  </section>
+
   <section class="coment" aria-labelledby="c-tit">
     <h2 id="c-tit">Califica a Laura</h2>
     <div class="c-form" id="c-form">
@@ -223,6 +230,32 @@ footer .marca{font-size:1.4rem;color:var(--ladrillo-2)}
     document.getElementById('c-form').style.display='none'; document.getElementById('c-gracias').style.display='block';
     window.open('https://wa.me/525552131916?text='+encodeURIComponent(msg),'_blank','noopener');
   });
+})();
+</script>
+<script>
+(function(){
+  var ID='EGSC-PRO-0006', L=document.getElementById('r-lista'), R=document.getElementById('r-res'), cb='rv'+Date.now();
+  function vacio(t){L.innerHTML='';var v=document.createElement('p');v.className='c-vacio';v.textContent=t;L.appendChild(v);}
+  window[cb]=function(r){try{
+    var rows=(r.table.rows||[]).map(function(x){var c=x.c||[];function g(i){return c[i]&&c[i].v!=null?c[i].v:'';}
+      var m=/Date\((\d+),(\d+),(\d+)/.exec(g(0)),d=m?new Date(+m[1],+m[2],+m[3]):null;
+      return {id:String(g(1)).trim().toUpperCase(),cli:String(g(3)),cal:Math.round(+g(4)||0),com:String(g(5)).trim(),f:d};})
+      .filter(function(x){return x.id===ID&&x.cal>0;});
+    if(!rows.length){vacio('Aún no hay comentarios. ¡Sé el primero en calificar!');return;}
+    var s=0;rows.forEach(function(x){s+=x.cal;});var avg=s/rows.length;
+    R.innerHTML='<span class="c-est">'+'★★★★★'.slice(0,Math.round(avg))+'</span> <b>'+avg.toFixed(1)+' de 5</b> · '+rows.length+' reseña'+(rows.length===1?'':'s');
+    var pub=rows.filter(function(x){return x.cal>=4&&x.com;}).sort(function(a,b){return (b.f||0)-(a.f||0);}).slice(0,5);
+    if(!pub.length){vacio('Aún no hay comentarios publicados.');return;}
+    L.innerHTML='';pub.forEach(function(c){var d=document.createElement('div');d.className='c-item';
+      var p=document.createElement('p');p.textContent='\u201c'+c.com+'\u201d';
+      var q=document.createElement('p');q.className='c-quien';var st=document.createElement('span');st.className='c-est';st.textContent='★★★★★'.slice(0,c.cal)+' ';q.appendChild(st);
+      var b=document.createElement('b');b.textContent=c.cli||'Cliente';q.appendChild(b);
+      if(c.f)q.appendChild(document.createTextNode(' · '+c.f.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'})));
+      d.appendChild(p);d.appendChild(q);L.appendChild(d);});
+  }catch(e){vacio('No se pudieron cargar los comentarios.');}};
+  var s=document.createElement('script');s.onerror=function(){vacio('No se pudieron cargar los comentarios.');};
+  s.src='https://docs.google.com/spreadsheets/d/1r7iy2DkheXjAtL1XFf2hqoiI5deYWClyBL1szmBGzms/gviz/tq?gid=182590657&headers=1&tqx=responseHandler:'+cb+'&_='+Date.now();
+  document.body.appendChild(s);
 })();
 </script>
 </body>
