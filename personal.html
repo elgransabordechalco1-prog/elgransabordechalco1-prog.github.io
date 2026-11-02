@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi personal · El Gran Sabor de Chalco</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#5B1D18">
+<link rel="icon" href="icono-192.png">
+<link rel="apple-touch-icon" href="icono-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Oswald:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--l:#5B1D18;--l2:#7A2A22;--d:#C9A14A;--dc:#E4C77E;--h:#F6ECDA;--p:#FFFBF3;--t:#2A1411;--x:#3B2420;--s:#7A6258;--b:rgba(91,29,24,.16);--ok:#2F6B3A}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--h:#1E0F0D;--p:#2A1613;--t:#FFF5E4;--x:#F1E4CF;--s:#C7AE9A;--b:rgba(228,199,126,.2);--ok:#7FCB8A}}
+:root[data-theme="dark"]{--h:#1E0F0D;--p:#2A1613;--t:#FFF5E4;--x:#F1E4CF;--s:#C7AE9A;--b:rgba(228,199,126,.2);--ok:#7FCB8A}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--h);color:var(--x);font-family:Montserrat,"Segoe UI",Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+header{background:var(--l);text-align:center;padding:calc(26px + env(safe-area-inset-top)) 18px 58px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;background:repeating-linear-gradient(90deg,var(--d) 0 14px,transparent 14px 22px);opacity:.55}
+.m{font-family:"Dancing Script","Brush Script MT",cursive;font-size:2.3rem;line-height:1.05;margin:0;color:var(--dc)}
+.sub{margin:.35rem 0 0;font-size:.82rem;letter-spacing:.04em;color:#EBD9B8}
+.sello-zona{display:flex;justify-content:center;margin:-50px 0 4px;position:relative;z-index:2}
+.sello{width:100px;height:100px;border-radius:50%;background:var(--p);display:grid;place-items:center;box-shadow:0 0 0 4px var(--h),0 6px 20px rgba(60,15,10,.25);position:relative}
+.sello svg.anillo{position:absolute;inset:0;width:100%;height:100%;animation:gira 22s linear infinite}
+.sello .ck{width:48px;height:48px;border-radius:50%;background:var(--ok);display:grid;place-items:center}
+@keyframes gira{to{transform:rotate(360deg)}}
+main{max-width:980px;margin:0 auto;padding:6px 16px calc(40px + env(safe-area-inset-bottom))}
+.titulo{text-align:center;margin:10px 0 4px}
+.titulo h1{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:600;font-size:1.6rem;margin:0;color:var(--t)}
+.titulo p{margin:.2rem auto 0;color:var(--s);font-size:.9rem;max-width:46ch}
+h2{font-family:Oswald,sans-serif;font-weight:500;font-size:1.1rem;color:var(--t);margin:26px 0 10px;padding-bottom:6px;border-bottom:1px dashed var(--b)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:560px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.grid{grid-template-columns:repeat(5,1fr)}}
+.gc{background:var(--p);border:1px solid var(--b);border-radius:14px;padding:10px 8px 12px;text-align:center;color:inherit;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:5px}
+.gc:hover{border-color:var(--d)}
+.gc:focus-visible{outline:2px solid var(--d);outline-offset:2px}
+.av{width:84px;height:104px;border-radius:12px;background:var(--l);color:var(--dc);display:grid;place-items:center;font-family:Oswald,sans-serif;font-size:1.6rem;overflow:hidden;border:2px solid var(--d)}
+.av img{width:100%;height:100%;object-fit:cover}
+.gc .n{font-weight:600;color:var(--t);font-size:.88rem;line-height:1.2}
+.gc .r{font-size:.72rem;color:var(--s);line-height:1.2}
+.gc .ok{font-size:.7rem;font-weight:600;color:var(--ok)}
+.buscar{background:var(--p);border:1px solid var(--b);border-radius:14px;padding:16px;margin-top:26px}
+.buscar p{margin:0 0 10px;font-size:.88rem;color:var(--s)}
+form{display:flex;gap:8px}
+input{flex:1;min-width:0;font:inherit;font-size:16px;padding:12px;border-radius:10px;border:1px solid var(--b);background:var(--h);color:var(--t);text-transform:uppercase}
+input:focus{outline:2px solid var(--d);outline-offset:1px}
+button,a.b{background:var(--l);color:#FFF4DE;border:0;border-radius:10px;padding:12px 16px;font:600 .95rem Montserrat,sans-serif;text-decoration:none;cursor:pointer}
+a.b{display:block;text-align:center;margin-top:14px}
+#e{color:#B3261E;font-size:.85rem;min-height:1.2em;margin-top:8px}
+footer{text-align:center;margin-top:30px;font-size:.78rem;color:var(--s)}
+footer a{color:var(--s)}
+@media (prefers-reduced-motion:reduce){.sello svg.anillo{animation:none}}
+</style>
+</head>
+<body>
+<header>
+  <p class="m">El Gran Sabor de Chalco</p>
+  <p class="sub">Verificación oficial de personal</p>
+</header>
+<div class="sello-zona"><div class="sello" aria-hidden="true">
+  <svg class="anillo" viewBox="0 0 100 100"><defs><path id="c" d="M50,50 m-39,0 a39,39 0 1,1 78,0 a39,39 0 1,1 -78,0"/></defs>
+  <circle cx="50" cy="50" r="47" fill="none" stroke="#C9A14A" stroke-width="2"/>
+  <text font-family="Oswald, Arial Narrow, sans-serif" font-size="8.8" letter-spacing="2" fill="#C9A14A"><textPath href="#c">PERSONAL VERIFICADO • GRAN SABOR DE CHALCO •</textPath></text></svg>
+  <div class="ck"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+</div></div>
+<main>
+  <div class="titulo"><h1>Nuestro personal</h1><p>Toca a la persona para abrir su verificación.</p></div>
+  <div id="app"></div>
+
+  <a class="b" href="no-autorizados.html" style="margin-top:26px">Ver personal NO autorizado</a>
+
+  <footer><p><a href="resenas.html">Ver reseñas del personal</a></p></footer>
+</main>
+<script>
+var G=[
+ ['Ventas',[['EGSC-VEN-0009','Alan','Vendedor'],['EGSC-VEN-0015','Cristian Ordóñez Azcona','Vendedor'],['EGSC-AYV-0010','Víctor','Ayudante de ventas'],['EGSC-AYV-0011','José Luis','Ayudante de ventas']]],
+ ['Producción',[['EGSC-PRO-0004','Rodolfo Constantino Valverde','Jefe de Producción'],['EGSC-PRO-0005','Marisela García Zavala','Producción'],['EGSC-PRO-0006','Laura González','Producción']]],
+ ['Administrativo',[['EGSC-SUP-0002','Eduardo Maya González','Jefe General'],['EGSC-ADM-0001','Alexis Eduardo Maya García','Administrativo'],['EGSC-ADM-0003','Dayana Mitzue Maya García','Administrativo y Marketing']]]
+];
+var IDS=["EGSC-ADM-0001","EGSC-SUP-0002","EGSC-ADM-0003","EGSC-PRO-0004","EGSC-PRO-0005","EGSC-PRO-0006","EGSC-VEN-0007","EGSC-AYV-0008","EGSC-VEN-0009","EGSC-AYV-0010","EGSC-AYV-0011","EGSC-VEN-0015","EGSC-BAJ-0012","EGSC-BAJ-0013","EGSC-BAJ-0014"];
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+function ini(n){var w=n.split(' ');return (w[0][0]+(w.length>2?w[w.length-2][0]:(w[1]?w[1][0]:''))).toUpperCase();}
+var app=document.getElementById('app'),h='';
+G.forEach(function(g){h+='<h2>'+g[0]+'</h2><div class="grid">'+g[1].map(function(p){
+  return '<a class="gc" href="'+p[0]+'"><div class="av" data-id="'+p[0]+'">'+ini(p[1])+'</div><div class="n">'+p[1]+'</div><div class="r">'+p[2]+'</div><div class="ok">✓ Autorizado</div></a>';}).join('')+'</div>';});
+app.innerHTML=h;
+[].forEach.call(document.querySelectorAll('.av[data-id]'),function(el){
+  var id=el.dataset.id,k='gsc_ph_'+id,c=ls(k);
+  function put(src){el.innerHTML='<img src="'+src+'" alt="">';}
+  if(c){put(c);return;}
+  fetch(id+'.html').then(function(r){return r.text();}).then(function(t){var m=/<div class="foto"><img src="(data:image\/[^"]+)"/.exec(t);if(m){put(m[1]);ls(k,m[1]);}}).catch(function(){});
+});
+</script>
+</body>
+</html>

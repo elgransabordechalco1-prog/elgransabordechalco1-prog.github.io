@@ -24,7 +24,7 @@ header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;b
 .sello svg.anillo{position:absolute;inset:0;width:100%;height:100%;animation:gira 22s linear infinite}
 .sello .ck{width:48px;height:48px;border-radius:50%;background:var(--ok);display:grid;place-items:center}
 @keyframes gira{to{transform:rotate(360deg)}}
-main{max-width:980px;margin:0 auto;padding:6px 16px calc(40px + env(safe-area-inset-bottom))}
+main{max-width:520px;margin:0 auto;padding:6px 16px calc(40px + env(safe-area-inset-bottom))}
 .titulo{text-align:center;margin:10px 0 4px}
 .titulo h1{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:600;font-size:1.6rem;margin:0;color:var(--t)}
 .titulo p{margin:.2rem auto 0;color:var(--s);font-size:.9rem;max-width:46ch}
@@ -65,37 +65,19 @@ footer a{color:var(--s)}
   <div class="ck"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
 </div></div>
 <main>
-  <div class="titulo"><h1>Nuestro personal</h1><p>Toca a la persona para ver su verificación, sus comentarios y calificarla.</p></div>
-  <div id="app"></div>
+  <div class="titulo"><h1>Verifica a nuestro personal</h1><p>Escanea el QR de su credencial o escribe el ID de empleado que aparece en ella.</p></div>
 
   <section class="buscar">
-    <p>¿Tienes la credencial en mano? Escribe el ID de empleado que aparece en ella.</p>
+    <p>ID de empleado</p>
     <form id="f"><input id="i" placeholder="EGSC-VEN-0009" autocomplete="off" aria-label="ID de empleado"><button>Verificar</button></form>
     <div id="e" role="alert"></div>
     <a class="b" href="no-autorizados.html">Ver personal NO autorizado</a>
   </section>
 
-  <footer><p>Dudas: WhatsApp 55 5213 1916 · <a href="resenas.html">Reseñas</a></p></footer>
+  <footer><p>Dudas: WhatsApp 55 5213 1916</p></footer>
 </main>
 <script>
-var G=[
- ['Ventas',[['EGSC-VEN-0009','Alan','Vendedor'],['EGSC-VEN-0015','Cristian Ordóñez Azcona','Vendedor'],['EGSC-AYV-0010','Víctor','Ayudante de ventas'],['EGSC-AYV-0011','José Luis','Ayudante de ventas']]],
- ['Producción',[['EGSC-PRO-0004','Rodolfo Constantino Valverde','Jefe de Producción'],['EGSC-PRO-0005','Marisela García Zavala','Producción'],['EGSC-PRO-0006','Laura González','Producción']]],
- ['Administrativo',[['EGSC-SUP-0002','Eduardo Maya González','Jefe General'],['EGSC-ADM-0001','Alexis Eduardo Maya García','Administrativo'],['EGSC-ADM-0003','Dayana Mitzue Maya García','Administrativo y Marketing']]]
-];
 var IDS=["EGSC-ADM-0001","EGSC-SUP-0002","EGSC-ADM-0003","EGSC-PRO-0004","EGSC-PRO-0005","EGSC-PRO-0006","EGSC-VEN-0007","EGSC-AYV-0008","EGSC-VEN-0009","EGSC-AYV-0010","EGSC-AYV-0011","EGSC-VEN-0015","EGSC-BAJ-0012","EGSC-BAJ-0013","EGSC-BAJ-0014"];
-function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
-function ini(n){var w=n.split(' ');return (w[0][0]+(w.length>2?w[w.length-2][0]:(w[1]?w[1][0]:''))).toUpperCase();}
-var app=document.getElementById('app'),h='';
-G.forEach(function(g){h+='<h2>'+g[0]+'</h2><div class="grid">'+g[1].map(function(p){
-  return '<a class="gc" href="'+p[0]+'"><div class="av" data-id="'+p[0]+'">'+ini(p[1])+'</div><div class="n">'+p[1]+'</div><div class="r">'+p[2]+'</div><div class="ok">✓ Autorizado</div></a>';}).join('')+'</div>';});
-app.innerHTML=h;
-[].forEach.call(document.querySelectorAll('.av[data-id]'),function(el){
-  var id=el.dataset.id,k='gsc_ph_'+id,c=ls(k);
-  function put(src){el.innerHTML='<img src="'+src+'" alt="">';}
-  if(c){put(c);return;}
-  fetch(id+'.html').then(function(r){return r.text();}).then(function(t){var m=/<div class="foto"><img src="(data:image\/[^"]+)"/.exec(t);if(m){put(m[1]);ls(k,m[1]);}}).catch(function(){});
-});
 document.getElementById('f').onsubmit=function(ev){ev.preventDefault();var v=document.getElementById('i').value.trim().toUpperCase().replace(/\s+/g,'');
   if(IDS.indexOf(v)>-1){location.href=v+'.html';}else{document.getElementById('e').textContent='Ese ID no está registrado. No entregues dinero ni mercancía y llámanos al 55 5213 1916.';}};
 </script>
