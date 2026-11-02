@@ -24,20 +24,31 @@
 html,body{margin:0}
 body{background:var(--h);color:var(--x);font-family:Montserrat,"Segoe UI",Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
 button{font:inherit;cursor:pointer}
-header{background:var(--l);color:var(--dc);padding:calc(14px + env(safe-area-inset-top)) 16px 14px;position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px}
-header img{width:40px;height:40px;border-radius:10px;background:var(--h)}
-header .tt{flex:1;min-width:0}
-header .m{font-family:"Dancing Script",cursive;font-size:1.45rem;line-height:1;margin:0}
-header .sub{font-size:.75rem;color:#EBD9B8;margin:2px 0 0}
+header{background:var(--l);color:var(--dc);text-align:center;padding:calc(26px + env(safe-area-inset-top)) 60px 58px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;background:repeating-linear-gradient(90deg,var(--d) 0 14px,transparent 14px 22px);opacity:.55}
+header img{display:none}
+header .tt{min-width:0}
+header .m{font-family:"Dancing Script","Brush Script MT",cursive;font-size:2.2rem;line-height:1.05;margin:0;color:var(--dc)}
+header .sub{margin:.35rem 0 0;font-size:.82rem;letter-spacing:.04em;color:#EBD9B8}
+header .ib{position:absolute;right:14px;top:calc(24px + env(safe-area-inset-top))}
+.sello-zona{display:flex;justify-content:center;margin:-50px 0 4px;position:relative;z-index:2}
+.sello{width:96px;height:96px;border-radius:50%;background:var(--p);display:grid;place-items:center;box-shadow:0 0 0 4px var(--h),0 6px 20px rgba(60,15,10,.25);position:relative}
+.sello svg.anillo{position:absolute;inset:0;width:100%;height:100%;animation:gira 22s linear infinite}
+.sello .ic{width:46px;height:46px;border-radius:50%;background:var(--d);display:grid;place-items:center;color:#fff;font-size:1.6rem;line-height:1}
+@keyframes gira{to{transform:rotate(360deg)}}
+.titulo{text-align:center;margin:10px 0 6px}
+.titulo h1{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:600;font-size:1.6rem;margin:0;color:var(--t)}
+.titulo p{margin:.2rem 0 0;color:var(--s);font-size:.88rem}
+main{padding-top:0}
 .ib{background:rgba(255,255,255,.12);border:0;color:#FFF4DE;border-radius:10px;width:40px;height:40px;display:grid;place-items:center}
 .ib:focus-visible{outline:2px solid var(--dc);outline-offset:2px}
 .ib.spin svg{animation:sp 1s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
 main{max-width:720px;margin:0 auto;padding:16px 16px calc(40px + env(safe-area-inset-bottom))}
-h2{font-family:Oswald,sans-serif;font-weight:500;font-size:1.1rem;color:var(--t);margin:22px 0 10px}
+h2{font-family:Oswald,sans-serif;font-weight:500;font-size:1.1rem;color:var(--t);margin:24px 0 10px;padding-bottom:6px;border-bottom:1px dashed var(--b)}
 .muted{color:var(--s);font-size:.82rem}
 .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 @media(min-width:560px){.kpis{grid-template-columns:repeat(4,1fr)}}
-.kpi{background:var(--p);border:1px solid var(--b);border-radius:14px;padding:12px 14px}
+.kpi{background:var(--p);border:1px solid var(--b);border-top:3px solid var(--d);border-radius:14px;padding:12px 14px}
 .kpi .v{font-family:Oswald,sans-serif;font-size:1.7rem;color:var(--t);line-height:1.1}
 .kpi .k{font-size:.76rem;color:var(--s)}
 .kpi.good .v{color:var(--ok)} .kpi.bad .v{color:var(--mal)}
@@ -79,6 +90,7 @@ h2{font-family:Oswald,sans-serif;font-weight:500;font-size:1.1rem;color:var(--t)
 /* PIN */
 #lock{position:fixed;inset:0;background:var(--l);z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;color:#FFF4DE}
 #lock img{width:110px;height:110px;border-radius:24px;margin-bottom:14px}
+#lock .m{font-family:"Dancing Script",cursive;font-size:2rem;color:var(--dc);margin:0 0 6px}
 #lock h1{font-family:Oswald,sans-serif;font-weight:500;font-size:1.4rem;margin:0 0 4px}
 #lock p{margin:0 0 18px;color:#EBD9B8;font-size:.88rem}
 .dots{display:flex;gap:12px;margin-bottom:22px}
@@ -90,12 +102,13 @@ h2{font-family:Oswald,sans-serif;font-weight:500;font-size:1.1rem;color:var(--t)
 .shake{animation:sh .35s}@keyframes sh{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
 .err{color:#FFB4A9;min-height:1.3em;font-size:.85rem;margin-top:12px}
 .hint{margin-top:18px;font-size:.78rem;color:#EBD9B8;text-align:center;max-width:300px}
-@media (prefers-reduced-motion:reduce){.ib.spin svg,.shake{animation:none}}
+@media (prefers-reduced-motion:reduce){.ib.spin svg,.shake,.sello svg.anillo{animation:none}}
 </style>
 </head>
 <body>
 <div id="lock" role="dialog" aria-label="Acceso con PIN">
   <img src="icono-192.png" alt="">
+  <p class="m">El Gran Sabor de Chalco</p>
   <h1>Reseñas de clientes</h1>
   <p>Escribe tu PIN para entrar</p>
   <div class="dots" id="dots"><span></span><span></span><span></span><span></span></div>
@@ -106,15 +119,21 @@ h2{font-family:Oswald,sans-serif;font-weight:500;font-size:1.1rem;color:var(--t)
 
 <header>
   <img src="icono-192.png" alt="">
-  <div class="tt"><p class="m">El Gran Sabor de Chalco</p><p class="sub" id="upd">Reseñas de clientes</p></div>
+  <div class="tt"><p class="m">El Gran Sabor de Chalco</p><p class="sub">Reseñas de clientes</p></div>
   <button class="ib" id="ref" aria-label="Actualizar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg></button>
 </header>
 
+<div class="sello-zona"><div class="sello" aria-hidden="true">
+  <svg class="anillo" viewBox="0 0 96 96"><defs><path id="c" d="M48,48 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"/></defs>
+  <circle cx="48" cy="48" r="45" fill="none" stroke="#C9A14A" stroke-width="2"/>
+  <text font-family="Oswald, Arial Narrow, sans-serif" font-size="8.6" letter-spacing="2" fill="#C9A14A"><textPath href="#c">OPINIÓN DE CLIENTES • GRAN SABOR DE CHALCO •</textPath></text></svg>
+  <div class="ic">★</div></div></div>
+<div class="titulo"><h1>Reseñas del personal</h1><p>Lo que opinan tus clientes de cada trabajador</p><p style="font-size:.76rem" id="upd">cargando…</p></div>
 <main id="app"></main>
 
 <script>
 var SHEET='1r7iy2DkheXjAtL1XFf2hqoiI5deYWClyBL1szmBGzms', GID='182590657';
-var PIN='1916';
+var PIN='1222';
 var STAFF=[
  {id:'EGSC-VEN-0009',n:'Alan',p:'Vendedor'},
  {id:'EGSC-VEN-0015',n:'Cristian Ordóñez Azcona',p:'Vendedor'},
@@ -139,13 +158,13 @@ function fdate(d){return d?d.toLocaleDateString('es-MX',{day:'numeric',month:'sh
 /* ---------- PIN ---------- */
 (function(){
   var lock=document.getElementById('lock'),pad=document.getElementById('pad'),dots=document.getElementById('dots').children,err=document.getElementById('perr'),v='';
-  if(ls('gsc_ok')==='1'){lock.remove();boot();return;}
+  if(ls('gsc_ok2')==='1'){lock.remove();boot();return;}
   document.getElementById('hint').textContent='Para tenerla en tu celular: abre el menú del navegador y elige "Agregar a pantalla de inicio".';
   ['1','2','3','4','5','6','7','8','9','','0','⌫'].forEach(function(k){var b=document.createElement('button');b.textContent=k;b.type='button';if(!k){b.style.visibility='hidden';}
     b.setAttribute('aria-label',k==='⌫'?'Borrar':k);b.onclick=function(){press(k);};pad.appendChild(b);});
   function paint(){for(var i=0;i<4;i++)dots[i].classList.toggle('f',i<v.length);}
   function press(k){err.textContent='';if(k==='⌫'){v=v.slice(0,-1);paint();return;}if(v.length>=4)return;v+=k;paint();
-    if(v.length===4){if(v===PIN){ls('gsc_ok','1');lock.remove();boot();}else{document.getElementById('dots').classList.add('shake');err.textContent='PIN incorrecto';setTimeout(function(){document.getElementById('dots').classList.remove('shake');v='';paint();},400);}}}
+    if(v.length===4){if(v===PIN){ls('gsc_ok2','1');lock.remove();boot();}else{document.getElementById('dots').classList.add('shake');err.textContent='PIN incorrecto';setTimeout(function(){document.getElementById('dots').classList.remove('shake');v='';paint();},400);}}}
   document.addEventListener('keydown',function(e){if(!document.body.contains(lock))return;if(/^[0-9]$/.test(e.key))press(e.key);else if(e.key==='Backspace')press('⌫');});
 })();
 
@@ -162,7 +181,7 @@ function load(){
       }).filter(function(x){return x.id&&x.id!=='PRUEBA'&&x.cal>0;});
       rows.sort(function(a,b){return (b.fecha||0)-(a.fecha||0);});
       ST.reviews=rows;ST.loaded=true;ST.error='';
-      document.getElementById('upd').textContent='Actualizado '+new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+      document.getElementById('upd').textContent='actualizado '+new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
     }catch(e){ST.error='No se pudieron leer las reseñas.';}
     render();
   };
