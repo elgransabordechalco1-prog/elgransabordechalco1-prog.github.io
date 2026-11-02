@@ -80,7 +80,7 @@ h2{font-family:Oswald,sans-serif;font-weight:500;font-size:1.1rem;color:var(--t)
 .rev .meta{font-size:.74rem;color:var(--s);margin-top:.35rem}
 .empty{background:var(--p);border:1px dashed var(--b);border-radius:14px;padding:22px 16px;text-align:center;color:var(--s);font-size:.9rem}
 .detail-head{display:flex;gap:14px;align-items:center;background:var(--p);border:1px solid var(--b);border-radius:16px;padding:14px}
-.detail-head .av{width:72px;height:88px;flex-basis:72px}
+.detail-head .av{width:84px;height:auto;min-height:84px;flex-basis:84px}.detail-head .av img{height:auto;display:block}
 .back{background:none;border:0;color:var(--l2);font-weight:600;padding:6px 0;display:inline-flex;gap:6px;align-items:center}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .back{color:var(--dc)}}
 .dist{display:grid;gap:6px;margin-top:12px}
@@ -93,7 +93,7 @@ h2{font-family:Oswald,sans-serif;font-weight:500;font-size:1.1rem;color:var(--t)
 .gc{background:var(--p);border:1px solid var(--b);border-radius:14px;padding:10px;text-align:center;color:inherit;display:flex;flex-direction:column;align-items:center;gap:6px}
 .gc:hover{border-color:var(--d)}
 .gc:focus-visible{outline:2px solid var(--d);outline-offset:2px}
-.gc .av{width:84px;height:104px;flex:none;border-radius:12px;font-size:1.6rem}
+.gc .av{width:96px;height:auto;min-height:96px;flex:none;border-radius:12px;font-size:1.6rem}.gc .av img{height:auto;display:block}
 .gc .n{font-weight:600;color:var(--t);font-size:.88rem;line-height:1.2}
 .gc .r{font-size:.72rem;color:var(--s);line-height:1.2}
 .gc .sc{font-size:.78rem;color:var(--s)}
@@ -186,7 +186,7 @@ function load(){
   });
 }
 function photos(){
-  STAFF.forEach(function(p){var k='gsc_ph_'+p.id,c=ls(k);if(c){p.img=c;return;}
+  STAFF.forEach(function(p){var k='gsc_ph2_'+p.id,c=ls(k);if(c){p.img=c;return;}
     fetch(p.id+'.html').then(function(r){return r.text();}).then(function(t){var m=/<div class="foto"><img src="(data:image\/[^"]+)"/.exec(t);if(m){p.img=m[1];ls(k,m[1]);render();}}).catch(function(){});});
 }
 function statsFor(list){var n=list.length,s=0,g=0,m=0,r=0,d=[0,0,0,0,0,0];list.forEach(function(x){s+=x.cal;d[x.cal]++;if(x.cal>=4)g++;else if(x.cal<=2)m++;else r++;});return{n:n,avg:n?s/n:0,g:g,m:m,r:r,d:d};}
